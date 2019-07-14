@@ -6,15 +6,14 @@ var app = angular.module("appI", []);
     $scope.todos = [];
     var container = document.querySelector(".con");
     var start = 0;
+    // No of initial records to load
+    // Change this based on your requirement and height of container
+    // generally dont load more than 50.
+    // Here i choosed thirty
     var end = 30;
     postsService.getData(start, end).then(function(res) {
       var response = res.data;
-      for (let i = 0; i < response.length; i++) {
-        $scope.todos.push(response[i]);
-        // $scope.$apply();
-      }
-      start = start + 30;
-      end = end + 30;
+      processResponse(response);
     });
 
     angular.element(container).bind("scroll", function($event) {
@@ -26,15 +25,17 @@ var app = angular.module("appI", []);
       ) {
         postsService.getData(start, end).then(function(res) {
           var response = res.data;
-          for (let i = 0; i < response.length; i++) {
-            $scope.todos.push(response[i]);
-            // $scope.$apply();
-          }
-          start = start + 30;
-          end = end + 30;
+          processResponse(response);
         });
       }
     });
+
+    function processResponse(resultArr) {
+      for (let i = 0; i < resultArr.length; i++) {
+        $scope.todos.push(resultArr[i]);
+        // $scope.$apply();
+      }
+    }
   }
 
   app.controller("Simple", cObj);
