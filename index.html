@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appI">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css" />
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  </head>
+  <body ng-controller="Simple">
+    <h1>
+      {{ name }}
+    </h1>
+    <ul class="con" ng-scroll="detect($event)">
+      <li ng-repeat="todo in todos">{{ todo }}..</li>
+    </ul>
+    <input type="text" ng-model="name" />
+  </body>
+  <script src="./app.js"></script>
+  <script src="./posts.js"></script>
+</html>
